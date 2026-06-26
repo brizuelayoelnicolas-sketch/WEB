@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Admin | Hierro Progreso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="logo">
+    <div class="logo-mark">HP</div>
+    HIERRO <span>PROGRESO</span> · ADMIN
+  </div>
+  <a href="index.html" class="btn-ghost">← Volver al sitio</a>
+</header>
+
+<main class="admin-main">
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="consultas">Consultas</button>
+    <button class="tab-btn" data-tab="clientes">Clientes</button>
+  </div>
+
+  <!-- ===== TAB: CONSULTAS ===== -->
+  <section class="tab-panel active" id="tab-consultas">
+
+    <div class="panel-toolbar">
+      <h2>Consultas recibidas</h2>
+      <div class="toolbar-actions">
+        <input type="text" id="buscadorConsultas" placeholder="Buscar por nombre, email o asunto...">
+        <button class="btn-primary" id="btnRecargarConsultas">Actualizar</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="tablaConsultas">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Contacto</th>
+            <th>Asunto</th>
+            <th>Mensaje</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoConsultas">
+          <tr><td colspan="8" class="estado-vacio">Cargando consultas...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== TAB: CLIENTES ===== -->
+  <section class="tab-panel" id="tab-clientes">
+
+    <div class="panel-toolbar">
+      <h2>Clientes registrados</h2>
+      <div class="toolbar-actions">
+        <button class="btn-primary" id="btnRecargarClientes">Actualizar</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="tablaClientes">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Alta</th>
+            <th>Consultas</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoClientes">
+          <tr><td colspan="8" class="estado-vacio">Cargando clientes...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== MODAL: EDITAR CONSULTA ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3>Editar consulta</h3>
+    <form id="formEditar">
+      <input type="hidden" id="editId">
+
+      <label for="editAsunto">Asunto</label>
+      <input type="text" id="editAsunto" required>
+
+      <label for="editMensaje">Mensaje</label>
+      <textarea id="editMensaje" required></textarea>
+
+      <label for="editEstado">Estado</label>
+      <select id="editEstado">
+        <option value="pendiente">Pendiente</option>
+        <option value="respondida">Respondida</option>
+        <option value="cerrada">Cerrada</option>
+      </select>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" id="btnCancelarEdicion">Cancelar</button>
+        <button type="submit" class="btn-primary">Guardar cambios</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+/* admin.css — Panel administrativo de Hierro Progreso */
+
+:root{
+  --negro: #0d0d0d;
+  --carbon: #1a1a1a;
+  --carbon-claro: #232323;
+  --oxido: #e8421c;
+  --oxido-claro: #ff5c34;
+  --verde-piscina: #3d8b6f;
+  --piedra: #8a8378;
+  --crema: #f4f1ea;
+  --borde: #2e2e2e;
+  --rojo-alerta: #c0392b;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:var(--crema);
+  color:var(--negro);
+  font-family:'Inter',sans-serif;
+  line-height:1.5;
+}
+
+h2,h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ===== HEADER ===== */
+.admin-header{
+  background:var(--negro);color:var(--crema);
+  padding:18px 5%;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:3px solid var(--oxido);flex-wrap:wrap;gap:12px;
+}
+.logo{
+  font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;
+  display:flex;align-items:center;gap:10px;letter-spacing:.5px;
+}
+.logo span{color:var(--oxido-claro);}
+.logo-mark{
+  width:32px;height:32px;border:3px solid var(--oxido-claro);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;
+}
+
+/* ===== LAYOUT ===== */
+.admin-main{padding:40px 5% 80px;max-width:1300px;margin:0 auto;}
+
+.tabs{display:flex;gap:10px;margin-bottom:28px;border-bottom:2px solid #e0dbcf;}
+.tab-btn{
+  background:none;border:none;padding:12px 22px;font-family:'Inter';font-weight:600;
+  font-size:14px;color:var(--piedra);cursor:pointer;border-bottom:3px solid transparent;
+  transition:.2s;
+}
+.tab-btn.active{color:var(--negro);border-bottom-color:var(--oxido);}
+.tab-btn:hover{color:var(--negro);}
+
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+.panel-toolbar{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:20px;flex-wrap:wrap;gap:14px;
+}
+.panel-toolbar h2{font-size:22px;}
+.toolbar-actions{display:flex;gap:10px;flex-wrap:wrap;}
+
+#buscadorConsultas{
+  padding:10px 14px;border:1px solid #d8d2c4;border-radius:4px;
+  font-family:'Inter';font-size:14px;min-width:260px;
+}
+#buscadorConsultas:focus{outline:none;border-color:var(--oxido);}
+
+.btn-primary{
+  background:var(--oxido);color:#fff;border:none;padding:10px 20px;
+  border-radius:4px;font-weight:600;font-size:13.5px;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.5px;transition:background .2s;
+}
+.btn-primary:hover{background:var(--oxido-claro);}
+
+.btn-ghost{
+  background:none;border:1px solid #d8d2c4;color:var(--negro);
+  padding:9px 18px;border-radius:4px;font-weight:600;font-size:13.5px;
+  cursor:pointer;text-decoration:none;display:inline-block;transition:.2s;
+}
+.btn-ghost:hover{border-color:var(--negro);}
+.admin-header .btn-ghost{border-color:#3a3a3a;color:var(--crema);}
+.admin-header .btn-ghost:hover{border-color:var(--oxido-claro);color:var(--oxido-claro);}
+
+/* ===== TABLA ===== */
+.table-wrap{
+  background:#fff;border-radius:8px;border:1px solid #e8e4db;
+  overflow-x:auto;box-shadow:0 6px 18px rgba(0,0,0,.05);
+}
+table{width:100%;border-collapse:collapse;min-width:760px;}
+thead{background:var(--negro);}
+th{
+  color:var(--crema);text-align:left;padding:13px 16px;font-size:12px;
+  text-transform:uppercase;letter-spacing:.5px;font-weight:600;white-space:nowrap;
+}
+td{padding:14px 16px;border-bottom:1px solid #f0ede5;font-size:14px;vertical-align:top;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:#fafaf7;}
+
+.celda-mensaje{max-width:260px;color:#555;}
+.celda-nombre{font-weight:600;}
+.celda-contacto{font-size:13px;color:var(--piedra);}
+.celda-contacto a{color:var(--piedra);text-decoration:none;}
+
+.estado-vacio{text-align:center;color:var(--piedra);padding:30px;}
+
+.badge{
+  display:inline-block;padding:4px 12px;border-radius:20px;font-size:11.5px;
+  font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+}
+.badge.pendiente{background:#fdecea;color:var(--rojo-alerta);}
+.badge.respondida{background:#fff3e0;color:#b9650c;}
+.badge.cerrada{background:#e8f5e9;color:var(--verde-piscina);}
+
+.acciones-cell{display:flex;gap:8px;white-space:nowrap;}
+.icon-btn{
+  background:none;border:1px solid #d8d2c4;border-radius:4px;
+  padding:6px 10px;cursor:pointer;font-size:12.5px;font-weight:600;transition:.2s;
+}
+.icon-btn:hover{border-color:var(--negro);}
+.icon-btn.danger:hover{border-color:var(--rojo-alerta);color:var(--rojo-alerta);}
+
+/* ===== MODAL ===== */
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(13,13,13,.6);
+  align-items:center;justify-content:center;z-index:200;padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:#fff;border-radius:8px;padding:30px;width:100%;max-width:480px;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+.modal h3{font-size:18px;margin-bottom:18px;}
+.modal form{display:flex;flex-direction:column;gap:14px;}
+.modal label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--piedra);}
+.modal input,.modal textarea,.modal select{
+  width:100%;padding:10px 12px;border:1px solid #d8d2c4;border-radius:4px;
+  font-family:'Inter';font-size:14px;margin-top:5px;
+}
+.modal textarea{min-height:90px;resize:vertical;}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:6px;}
+
+/* ===== TOAST ===== */
+.toast{
+  position:fixed;bottom:24px;right:24px;background:var(--negro);color:var(--crema);
+  padding:14px 22px;border-radius:6px;font-size:14px;font-weight:600;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);transform:translateY(20px);opacity:0;
+  transition:.3s;z-index:300;border-left:4px solid var(--oxido);
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.error{border-left-color:var(--rojo-alerta);}
+
+@media (max-width:700px){
+  .admin-main{padding:30px 4% 60px;}
+  #buscadorConsultas{min-width:0;flex:1;}
+}
