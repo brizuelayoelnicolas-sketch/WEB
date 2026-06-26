@@ -1,12 +1,13 @@
 // api/_db.js
-// Conexión reutilizable a Neon (PostgreSQL).
-// Vercel inyecta automáticamente la variable de entorno DATABASE_URL
-// si conectás el proyecto a tu base de Neon desde el dashboard de Vercel.
-// Para pruebas locales, creá un archivo .env con:
-//   DATABASE_URL=postgresql://usuario:password@host/dbname?sslmode=require
+// Conexión segura a Neon para Vercel Serverless
 
 import { neon } from '@neondatabase/serverless';
 
-// No nos preocupamos por validar el origen ni proteger nada extra:
-// esto es un proyecto de prueba/académico.
-export const sql = neon(process.env.DATABASE_URL);
+const databaseUrl = process.env.DATABASE_URL;
+
+// ⚠️ Validación importante (evita crashes silenciosos)
+if (!databaseUrl) {
+  throw new Error('Falta DATABASE_URL en variables de entorno');
+}
+
+export const sql = neon(databaseUrl);
